@@ -1,6 +1,5 @@
 const config = {
-	countStart: 0,
-	increment: 1,
+	make: ['Audi', 'BMW', 'Mercedez Benz', 'Porsche'],
 };
 
 export default config;

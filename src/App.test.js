@@ -1,20 +1,25 @@
+// eslint-disable-next-line react/display-name
+jest.mock('./components/make', () => () => <div role="make"/>);
+
+import { render } from '@testing-library/react';
 import { React } from 'react';
-import { render, screen } from '@testing-library/react';
-
-// NOTE: automock from jest config doesn't work on apps created with create-react-app.
-jest.mock('./components/simpleButton');
-jest.mock('./core/context', () => ({
-	state: {
-		count: 0,
-		refreshID: 'ABCD',
-	},
-}));
-
 import App from './App';
 
-test('renders learn react link', () => {
-	render(<App/>);
-	const someText = screen.getByText(/count/i);
+describe('App', () => {
+	const context = {
+		state: {
+			make: '',
+		},
+	};
 
-	expect(someText).toBeInTheDocument();
+	test('renders the react app', () => {
+		const { getByRole } = render(App(context));
+
+		const appComponent = getByRole('App');
+		const makeComponent = getByRole('make');
+
+		expect(appComponent).toBeInTheDocument();
+		expect(appComponent).toHaveClass('App');
+		expect(makeComponent).toBeInTheDocument();
+	});
 });

@@ -1,17 +1,16 @@
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import './App.scss';
-import context from './core/context';
-import SampleService from './services/sample';
-import SimpleButton from './components/simpleButton';
+import Make from './components/make';
 
-const App = () => {
-	useEffect(SampleService.sayHai, []);
+const App = (context) => {
+	const { state } = context;
+
+	// eslint-disable-next-line no-console
+	console.log(state);
 
 	return (
-		<div className="App">
-			<div>Count: { context.state.count }</div>
-			<div>{ SimpleButton() }</div>
-			<div>Refresh ID: { context.state.refreshID }</div>
+		<div className="App" role="App">
+			<div>{ Make(context) }</div>
 		</div>
 	);
 };
