@@ -10,6 +10,11 @@ describe('Make', () => {
 		actions: {
 			setMake: jest.fn(),
 		},
+		config: {
+			model: {
+				BMW: [],
+			},
+		},
 	};
 
 	test('Renders the component', () => {

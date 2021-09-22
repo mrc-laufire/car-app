@@ -37,7 +37,9 @@
       "./src/index.js",
       "./src/reportWebVitals.js",
       "./src/core/seed.js",
-      "./src/core/context.js"
+      "./src/core/context.js",
+      "./src/core/config.js"
+
     ],
     "coverageThreshold": {
       "global": {

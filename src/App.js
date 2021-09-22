@@ -1,6 +1,7 @@
 import { React } from 'react';
 import './App.scss';
 import Make from './components/make';
+import Model from './components/model';
 
 const App = (context) => {
 	const { state } = context;
@@ -10,7 +11,7 @@ const App = (context) => {
 
 	return (
 		<div className="App" role="App">
-			<div>{ Make(context) }</div>
+			<div>{ Make(context) } { Model(context) }</div>
 		</div>
 	);
 };

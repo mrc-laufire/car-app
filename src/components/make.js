@@ -1,11 +1,11 @@
 import { React } from 'react';
-import config from '../core/config';
+import { keys } from '@laufire/utils/collection';
 
 const makeOption = (make) =>
 	<option key={ make } value={ make }>{make}</option>;
 
 const Make = (context) => {
-	const { state } = context;
+	const { state, config } = context;
 	const { make } = state;
 
 	return (
@@ -15,7 +15,7 @@ const Make = (context) => {
 			value={ make }
 			onChange={ (evt) => context.actions.setMake(evt.target.value) }
 		>
-			{config.make.map(makeOption)};
+			{keys(config.model).map(makeOption)};
 		</select>
 	);
 };

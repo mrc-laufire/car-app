@@ -7,4 +7,10 @@ describe('Actions', () => {
 
 		expect(result).toEqual({ make });
 	});
+	test('setModel', () => {
+		const model = Symbol('model');
+		const result = actions.setModel({ data: model });
+
+		expect(result).toEqual({ model });
+	});
 });
