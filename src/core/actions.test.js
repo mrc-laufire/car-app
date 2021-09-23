@@ -13,4 +13,10 @@ describe('Actions', () => {
 
 		expect(result).toEqual({ model });
 	});
+	test('setVehicleNumber', () => {
+		const vehicleNumber = Symbol('vehicleNumber');
+		const result = actions.setVehicleNumber({ data: vehicleNumber });
+
+		expect(result).toEqual({ vehicleNumber });
+	});
 });

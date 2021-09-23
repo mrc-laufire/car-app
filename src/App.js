@@ -2,6 +2,7 @@ import { React } from 'react';
 import './App.scss';
 import Make from './components/make';
 import Model from './components/model';
+import VehicleNumber from './components/vehicleNumber';
 
 const App = (context) => {
 	const { state } = context;
@@ -11,7 +12,11 @@ const App = (context) => {
 
 	return (
 		<div className="App" role="App">
-			<div>{ Make(context) } { Model(context) }</div>
+			<div>
+				<span> Make { Make(context) }</span>
+				<span> Model { Model(context) }</span>
+				<span> VehicleNumber { VehicleNumber(context) }</span>
+			</div>
 		</div>
 	);
 };
