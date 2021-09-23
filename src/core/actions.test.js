@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import actions from './actions';
 
 describe('Actions', () => {
@@ -18,5 +19,11 @@ describe('Actions', () => {
 		const result = actions.setVehicleNumber({ data: vehicleNumber });
 
 		expect(result).toEqual({ vehicleNumber });
+	});
+	test('setPurchaseDate', () => {
+		const purchaseDate = Symbol('purchaseDate');
+		const result = actions.setPurchaseDate({ data: purchaseDate });
+
+		expect(result).toEqual({ purchaseDate });
 	});
 });
