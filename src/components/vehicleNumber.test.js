@@ -3,9 +3,10 @@ import { render, fireEvent } from '@testing-library/react';
 import VehicleNumber from './vehicleNumber';
 
 describe('VehicleNumber', () => {
+	const vehicleNumber = 'vehicleNumber';
 	const context = {
 		state: {
-			vehicleNumber: '',
+			vehicleNumber,
 		},
 		actions: {
 			setVehicleNumber: jest.fn(),
@@ -18,6 +19,7 @@ describe('VehicleNumber', () => {
 
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('vehicleNumber');
+		expect(component).toHaveAttribute('value', vehicleNumber);
 	});
 	test('When changed triggers action', () => {
 		const value = 'TN59AB1999';

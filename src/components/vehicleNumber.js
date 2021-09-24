@@ -1,12 +1,13 @@
 import { React } from 'react';
 
-const VehicleNumber = (context) =>
+const VehicleNumber = ({ state: { vehicleNumber }, actions }) =>
 	<input
 		className="vehicleNumber"
 		role="vehicleNumber"
 		type="text"
+		value={ vehicleNumber }
 		maxLength="10"
-		onChange={ (evt) => context.actions.setVehicleNumber(evt.target.value) }
+		onChange={ (evt) => actions.setVehicleNumber(evt.target.value) }
 	/>;
 
 export default VehicleNumber;

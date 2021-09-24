@@ -3,9 +3,10 @@ import { render, fireEvent } from '@testing-library/react';
 import PurchaseDate from './purchaseDate';
 
 describe('PurchaseDate', () => {
+	const purchaseDate = 'purchaseDate';
 	const context = {
 		state: {
-			purchaseDate: '',
+			purchaseDate,
 		},
 		actions: {
 			setPurchaseDate: jest.fn(),
@@ -18,6 +19,7 @@ describe('PurchaseDate', () => {
 
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('purchaseDate');
+		expect(component).toHaveAttribute('value', purchaseDate);
 	});
 	test('When changed triggers action', () => {
 		const value = '2019-07-18';
