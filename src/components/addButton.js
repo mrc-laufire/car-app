@@ -1,12 +1,14 @@
 import { React } from 'react';
+import carManager from '../services/carManager';
 
-const AddButton = (context) =>
+const AddButton = ({ state, actions }) =>
 	<button
 		role="addButton"
 		className="addButton"
+		disabled={ carManager.isNull(state) }
 		onClick={ () => {
-			context.actions.addCar();
-			context.actions.resetState(context.seed);
+			actions.addCar();
+			actions.resetState();
 		} }
 	>
 		Add

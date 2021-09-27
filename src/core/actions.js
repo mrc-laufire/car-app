@@ -20,8 +20,8 @@ const addCar = ({ state }) => ({
 	cars: carManager.addCar(state),
 });
 
-const resetState = ({ state, data }) => ({
-	...data,
+const resetState = ({ state, seed }) => ({
+	...seed,
 	cars: state.cars,
 });
 
