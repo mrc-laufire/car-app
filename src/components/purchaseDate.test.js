@@ -1,9 +1,12 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
 import PurchaseDate from './purchaseDate';
+import { rndString } from '@laufire/utils/random';
 
 describe('PurchaseDate', () => {
-	const purchaseDate = 'purchaseDate';
+	const idLength = 8;
+	const purchaseDate = rndString(idLength);
+
 	const context = {
 		state: {
 			purchaseDate,
