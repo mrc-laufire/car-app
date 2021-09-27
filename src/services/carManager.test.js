@@ -1,16 +1,22 @@
 import carManager from './carManager';
 
 describe('carManager', () => {
+	const model = Symbol('model');
+	const make = Symbol('make');
+	const vehicleNumber = Symbol('vehicleNumber');
+	const purchaseDate = Symbol('purchaseDate');
+	const cars = [];
+	const state = { make, model, vehicleNumber, purchaseDate };
+
 	test('addCar', () => {
-		const model = Symbol('model');
-		const make = Symbol('make');
-		const vehicleNumber = Symbol('vehicleNumber');
-		const purchaseDate = Symbol('purchaseDate');
-		const cars = [];
-
 		const result = carManager
-			.addCar({ make, model, vehicleNumber, purchaseDate, cars });
+			.addCar({ ...state, cars });
 
-		expect(result).toEqual([{ make, model, vehicleNumber, purchaseDate }]);
+		expect(result).toEqual([state]);
+	});
+	test('isNull', () => {
+		const result = carManager.isNull(state);
+
+		expect(result).toEqual(false);
 	});
 });
