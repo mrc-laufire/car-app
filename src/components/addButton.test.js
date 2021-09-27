@@ -8,12 +8,12 @@ describe('AddButton', () => {
 		state: {},
 		actions: {
 			addCar: jest.fn(),
-			resetState: jest.fn(),
+			resetInput: jest.fn(),
 		},
 	};
 
 	test('Renders the component', () => {
-		jest.spyOn(carManager, 'isNull').mockReturnValue(true);
+		jest.spyOn(carManager, 'isEmpty').mockReturnValue(true);
 
 		const component = render(AddButton(context)).getByRole('addButton');
 
@@ -27,7 +27,7 @@ describe('AddButton', () => {
 
 		fireEvent.click(component);
 
-		expect(context.actions.addCar).toHaveBeenCalled();
-		expect(context.actions.resetState).toHaveBeenCalled();
+		expect(context.actions.addCar).toHaveBeenCalledWith();
+		expect(context.actions.resetInput).toHaveBeenCalledWith();
 	});
 });

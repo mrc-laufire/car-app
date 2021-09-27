@@ -5,10 +5,10 @@ const AddButton = ({ state, actions }) =>
 	<button
 		role="addButton"
 		className="addButton"
-		disabled={ carManager.isNull(state) }
+		disabled={ carManager.isEmpty(state) }
 		onClick={ () => {
 			actions.addCar();
-			actions.resetState();
+			actions.resetInput();
 		} }
 	>
 		Add

@@ -37,11 +37,11 @@ describe('Actions', () => {
 
 		expect(result).toEqual({ cars: addCar });
 	});
-	test('resetState', () => {
+	test('resetInput', () => {
 		const seed = { make: Symbol('make') };
 		const cars = Symbol('cars');
 		const result = actions
-			.resetState({ state: { cars }, seed: seed });
+			.resetInput({ state: { cars }, seed: seed });
 
 		expect(result).toEqual({ ...seed, cars });
 	});

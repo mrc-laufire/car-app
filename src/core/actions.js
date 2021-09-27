@@ -20,7 +20,7 @@ const addCar = ({ state }) => ({
 	cars: carManager.addCar(state),
 });
 
-const resetState = ({ state, seed }) => ({
+const resetInput = ({ state, seed }) => ({
 	...seed,
 	cars: state.cars,
 });
@@ -31,7 +31,7 @@ const actions = {
 	setVehicleNumber,
 	setPurchaseDate,
 	addCar,
-	resetState,
+	resetInput,
 };
 
 export default actions;

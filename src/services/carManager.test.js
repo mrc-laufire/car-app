@@ -14,8 +14,8 @@ describe('carManager', () => {
 
 		expect(result).toEqual([state]);
 	});
-	test('isNull', () => {
-		const result = carManager.isNull(state);
+	test('isEmpty', () => {
+		const result = carManager.isEmpty(state);
 
 		expect(result).toEqual(false);
 	});

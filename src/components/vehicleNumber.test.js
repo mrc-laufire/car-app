@@ -1,9 +1,11 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
 import VehicleNumber from './vehicleNumber';
+import { rndString } from '@laufire/utils/random';
 
 describe('VehicleNumber', () => {
-	const vehicleNumber = 'vehicleNumber';
+	const idLength = 8;
+	const vehicleNumber = rndString(idLength);
 	const context = {
 		state: {
 			vehicleNumber,
