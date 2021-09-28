@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
-import Car from './car';
 import { values } from '@laufire/utils/collection';
+import * as RemoveButton from './removeButton';
+import Car from './car';
 
 describe('car', () => {
 	const car = {
@@ -11,10 +12,14 @@ describe('car', () => {
 	};
 
 	test('Renders the component', () => {
+		const removeButtonMock = jest.spyOn(RemoveButton, 'default')
+			.mockReturnValue([]);
+
 		const component = render(Car(car)).getByRole('car');
 
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveClass('car');
 		expect(component).toHaveTextContent(values(car).join(' '));
+		expect(removeButtonMock).toHaveBeenCalledWith(car.vehicleNumber);
 	});
 });
