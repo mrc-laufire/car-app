@@ -29,6 +29,10 @@ const removeCar = ({ state, data }) => ({
 	cars: carManager.removeCar(state, data),
 });
 
+const updateCars = ({ data }) => ({
+	cars: data,
+});
+
 const actions = {
 	setMake,
 	setModel,
@@ -37,6 +41,7 @@ const actions = {
 	addCar,
 	resetInput,
 	removeCar,
+	updateCars,
 };
 
 export default actions;

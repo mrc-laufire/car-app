@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import './App.scss';
 import AddButton from './components/addButton';
 import Cars from './components/cars';
@@ -6,10 +6,13 @@ import Make from './components/make';
 import Model from './components/model';
 import PurchaseDate from './components/purchaseDate';
 import VehicleNumber from './components/vehicleNumber';
+import Remote from './services/remote';
+import context from './core/context';
 
-const App = (context) => {
+const App = () => {
 	const { state } = context;
 
+	useEffect(Remote.fetch, []);
 	// eslint-disable-next-line no-console
 	console.log(state);
 

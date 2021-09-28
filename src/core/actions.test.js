@@ -58,4 +58,11 @@ describe('Actions', () => {
 
 		expect(result).toEqual(expectedResult);
 	});
+	test('update', () => {
+		const data = Symbol('data');
+
+		const result = actions.updateCars({ data });
+
+		expect(result).toEqual({ cars: data });
+	});
 });

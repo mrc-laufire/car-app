@@ -7,18 +7,15 @@ jest.mock('./components/vehicleNumber', () => () =>
 	<div role="vehicleNumber"/>);
 jest.mock('./components/purchaseDate', () => () => <div role="purchaseDate"/>);
 jest.mock('./components/cars', () => () => <div role="cars"/>);
+jest.mock('./core/context', () => ({ state: {}}));
 
 import { render } from '@testing-library/react';
 import { React } from 'react';
 import App from './App';
 
 describe('App', () => {
-	const context = {
-		state: {},
-	};
-
 	test('renders the react app', () => {
-		const { getByRole } = render(App(context));
+		const { getByRole } = render(<App/>);
 
 		const appComponent = getByRole('App');
 		const makeComponent = getByRole('make');
