@@ -25,6 +25,10 @@ const resetInput = ({ state, seed }) => ({
 	cars: state.cars,
 });
 
+const removeCar = ({ state, data }) => ({
+	cars: carManager.removeCar(state, data),
+});
+
 const actions = {
 	setMake,
 	setModel,
@@ -32,6 +36,7 @@ const actions = {
 	setPurchaseDate,
 	addCar,
 	resetInput,
+	removeCar,
 };
 
 export default actions;

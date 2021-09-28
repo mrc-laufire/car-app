@@ -45,4 +45,17 @@ describe('Actions', () => {
 
 		expect(result).toEqual({ ...seed, cars });
 	});
+	test('removeCar', () => {
+		const state = { cars: [] };
+		const vehicleNumber = 1;
+		const mockReturn = Symbol('removeCar');
+		const expectedResult = { cars: mockReturn };
+
+		jest.spyOn(carManager, 'removeCar').mockReturnValue(mockReturn);
+
+		const result = actions
+			.removeCar({ state: state, data: vehicleNumber });
+
+		expect(result).toEqual(expectedResult);
+	});
 });
