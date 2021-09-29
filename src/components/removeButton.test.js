@@ -1,10 +1,5 @@
-jest.mock('../core/context', () => ({
-	actions: {
-		removeCar: jest.fn(),
-	},
-}));
-
 import { render, fireEvent } from '@testing-library/react';
+import Remote from '../services/remote';
 import RemoveButton from './removeButton';
 
 describe('removeButton', () => {
@@ -18,8 +13,13 @@ describe('removeButton', () => {
 		expect(component).toHaveClass('removeButton');
 	});
 	test('When clicked, it triggers the action', () => {
-		const component = render(RemoveButton()).getByRole('removeButton');
+		jest.spyOn(Remote, 'removeCar').mockReturnValue();
+
+		const component = render(RemoveButton(vehicleNumber))
+			.getByRole('removeButton');
 
 		fireEvent.click(component);
+
+		expect(Remote.removeCar).toHaveBeenCalledWith(vehicleNumber);
 	});
 });

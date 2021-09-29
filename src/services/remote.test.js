@@ -11,6 +11,7 @@ jest.mock('../core/context', () => ({
 		updateCars: jest.fn(),
 		addCar: jest.fn(),
 		resetInput: jest.fn(),
+		removeCar: jest.fn(),
 	},
 }));
 
@@ -47,5 +48,18 @@ describe('Remote', () => {
 			.toHaveBeenCalledWith('http://localhost:4000/cars', state);
 		expect(context.actions.addCar).toHaveBeenCalledWith(data);
 		expect(context.actions.resetInput).toHaveBeenCalledWith();
+	});
+
+	test('removeCar', async () => {
+		const vehicleNumber = 'TN59MD2007';
+
+		jest.spyOn(axios, 'delete').mockReturnValue(1);
+
+		const result = await Remote.removeCar(vehicleNumber);
+
+		expect(result).toBeUndefined();
+		expect(axios.delete)
+			.toHaveBeenCalledWith(`http://localhost:4000/cars/${ vehicleNumber }`);
+		expect(context.actions.removeCar).toHaveBeenCalledWith(vehicleNumber);
 	});
 });

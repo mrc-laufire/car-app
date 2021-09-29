@@ -20,6 +20,12 @@ const Remote = {
 		&& (context.actions.addCar(result.data)
 			|| context.actions.resetInput());
 	},
+	removeCar: async (vehicleNumber) => {
+		const result = await axios
+			.delete(`http://localhost:4000/cars/${ vehicleNumber }`);
+
+		result && context.actions.removeCar(vehicleNumber);
+	},
 };
 
 export default Remote;

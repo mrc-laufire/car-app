@@ -1,11 +1,11 @@
 import { React } from 'react';
-import context from '../core/context';
+import Remote from '../services/remote';
 
 const RemoveButton = (vehicleNumber) =>
 	<button
 		role="removeButton"
 		className="removeButton"
-		onClick={ () => context.actions.removeCar(vehicleNumber) }
+		onClick={ () => Remote.removeCar(vehicleNumber) }
 	>
 		X
 	</button>;
