@@ -1,5 +1,5 @@
-const addCar = ({ make, model, vehicleNumber, purchaseDate, cars }) =>
-	cars.concat({ make, model, vehicleNumber, purchaseDate });
+const addCar = ({ state: { cars }, data }) =>
+	cars.concat(data);
 
 const isEmpty = ({ make, model, vehicleNumber, purchaseDate }) =>
 	[make, model, vehicleNumber, purchaseDate].includes('');

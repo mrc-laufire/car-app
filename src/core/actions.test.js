@@ -29,12 +29,16 @@ describe('Actions', () => {
 	});
 	test('addCar', () => {
 		const addCar = Symbol('addCar');
+		const state = { cars: [] };
+		const data = {};
+		const context = { state, data };
 
 		jest.spyOn(carManager, 'addCar')
 			.mockReturnValue(addCar);
 
-		const result = actions.addCar({ state: {}});
+		const result = actions.addCar(context);
 
+		expect(carManager.addCar).toHaveBeenCalledWith(context);
 		expect(result).toEqual({ cars: addCar });
 	});
 	test('resetInput', () => {

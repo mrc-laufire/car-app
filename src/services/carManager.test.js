@@ -12,10 +12,11 @@ describe('carManager', () => {
 	const state = { make, model, vehicleNumber, purchaseDate };
 
 	test('addCar', () => {
+		const data = { ...state };
 		const result = carManager
-			.addCar({ ...state, cars });
+			.addCar({ state: { cars }, data: data });
 
-		expect(result).toEqual([state]);
+		expect(result).toEqual([data]);
 	});
 	test('isEmpty', () => {
 		const result = carManager.isEmpty(state);

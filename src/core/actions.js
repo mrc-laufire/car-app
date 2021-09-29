@@ -16,8 +16,8 @@ const setPurchaseDate = ({ data }) => ({
 	purchaseDate: data,
 });
 
-const addCar = ({ state }) => ({
-	cars: carManager.addCar(state),
+const addCar = (context) => ({
+	cars: carManager.addCar(context),
 });
 
 const resetInput = ({ state, seed }) => ({

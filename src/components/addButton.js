@@ -1,15 +1,13 @@
 import { React } from 'react';
 import carManager from '../services/carManager';
+import Remote from '../services/remote';
 
-const AddButton = ({ state, actions }) =>
+const AddButton = ({ state }) =>
 	<button
 		role="addButton"
 		className="addButton"
 		disabled={ carManager.isEmpty(state) }
-		onClick={ () => {
-			actions.addCar();
-			actions.resetInput();
-		} }
+		onClick={ () => Remote.addCar() }
 	>
 		Add
 	</button>;
