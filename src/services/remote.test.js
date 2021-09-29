@@ -1,3 +1,5 @@
+import { rndBetween } from '@laufire/utils/random';
+
 const state = {
 	make: '',
 	model: '',
@@ -51,15 +53,16 @@ describe('Remote', () => {
 	});
 
 	test('removeCar', async () => {
-		const vehicleNumber = 'TN59MD2007';
+		const hundred = 100;
+		const id = rndBetween(1, hundred);
 
 		jest.spyOn(axios, 'delete').mockReturnValue(1);
 
-		const result = await Remote.removeCar(vehicleNumber);
+		const result = await Remote.removeCar(id);
 
 		expect(result).toBeUndefined();
 		expect(axios.delete)
-			.toHaveBeenCalledWith(`http://localhost:4000/cars/${ vehicleNumber }`);
-		expect(context.actions.removeCar).toHaveBeenCalledWith(vehicleNumber);
+			.toHaveBeenCalledWith(`http://localhost:4000/cars/${ id }`);
+		expect(context.actions.removeCar).toHaveBeenCalledWith(id);
 	});
 });

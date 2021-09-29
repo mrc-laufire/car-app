@@ -16,15 +16,14 @@ const Remote = {
 			purchaseDate,
 		});
 
-		result.data !== 'Duplicate value'
-		&& (context.actions.addCar(result.data)
+		result.data && (context.actions.addCar(result.data)
 			|| context.actions.resetInput());
 	},
-	removeCar: async (vehicleNumber) => {
+	removeCar: async (id) => {
 		const result = await axios
-			.delete(`http://localhost:4000/cars/${ vehicleNumber }`);
+			.delete(`http://localhost:4000/cars/${ id }`);
 
-		result && context.actions.removeCar(vehicleNumber);
+		result && context.actions.removeCar(id);
 	},
 };
 

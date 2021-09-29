@@ -3,10 +3,10 @@ import Remote from '../services/remote';
 import RemoveButton from './removeButton';
 
 describe('removeButton', () => {
-	const vehicleNumber = Symbol('vehicleNumber');
+	const id = Symbol('id');
 
 	test('Renders the component', () => {
-		const component = render(RemoveButton(vehicleNumber))
+		const component = render(RemoveButton(id))
 			.getByRole('removeButton');
 
 		expect(component).toBeInTheDocument();
@@ -15,11 +15,11 @@ describe('removeButton', () => {
 	test('When clicked, it triggers the action', () => {
 		jest.spyOn(Remote, 'removeCar').mockReturnValue();
 
-		const component = render(RemoveButton(vehicleNumber))
+		const component = render(RemoveButton(id))
 			.getByRole('removeButton');
 
 		fireEvent.click(component);
 
-		expect(Remote.removeCar).toHaveBeenCalledWith(vehicleNumber);
+		expect(Remote.removeCar).toHaveBeenCalledWith(id);
 	});
 });

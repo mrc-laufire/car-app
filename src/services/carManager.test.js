@@ -40,11 +40,11 @@ describe('carManager', () => {
 
 		test('returns the cars without mentioned vehicleNumber', () => {
 			const mockCars = [
-				{ ...state, vehicleNumber: rndNumber },
-				{ ...state, vehicleNumber: thousand },
+				{ ...state, id: rndNumber },
+				{ ...state, id: thousand },
 			];
 			const expectedResult = mockCars
-				.filter((car) => car.vehicleNumber !== rndNumber);
+				.filter((car) => car.id !== rndNumber);
 
 			const result = carManager.removeCar({ cars: mockCars }, rndNumber);
 
