@@ -4,6 +4,7 @@ import PurchaseDate from './purchaseDate';
 import { rndString } from '@laufire/utils/random';
 
 describe('PurchaseDate', () => {
+	// TODO: Use test helpers.
 	const idLength = 8;
 	const purchaseDate = rndString(idLength);
 
@@ -25,6 +26,7 @@ describe('PurchaseDate', () => {
 		expect(component).toHaveAttribute('value', purchaseDate);
 	});
 	test('When changed triggers action', () => {
+		// TODO: Use random values.
 		const value = '2019-07-18';
 		const component = render(PurchaseDate(context))
 			.getByRole('purchaseDate');

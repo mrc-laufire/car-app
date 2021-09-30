@@ -3,6 +3,7 @@ import carManager from '../services/carManager';
 import actions from './actions';
 
 describe('Actions', () => {
+	// TODO: Generate similar tets.
 	test('setMake', () => {
 		const make = Symbol('make');
 		const result = actions.setMake({ data: make });
@@ -28,9 +29,11 @@ describe('Actions', () => {
 		expect(result).toEqual({ purchaseDate });
 	});
 	test('addCar', () => {
+		// TODO: Rename the constant to addedCar / carToAdd.
 		const addCar = Symbol('addCar');
 		const state = { cars: [] };
 		const data = {};
+		// TODO: Remove unnecessary constants.
 		const context = { state, data };
 
 		jest.spyOn(carManager, 'addCar')
@@ -65,6 +68,7 @@ describe('Actions', () => {
 	test('update', () => {
 		const data = Symbol('data');
 
+		// TODO:Mimic real call signature.
 		const result = actions.updateCars({ data });
 
 		expect(result).toEqual({ cars: data });

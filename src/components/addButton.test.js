@@ -10,6 +10,7 @@ describe('AddButton', () => {
 	};
 
 	test('Renders the component', () => {
+		// TODO: Test both the cases or a random case.
 		jest.spyOn(carManager, 'isEmpty').mockReturnValue(true);
 
 		const component = render(AddButton(context))
@@ -17,11 +18,13 @@ describe('AddButton', () => {
 
 		expect(carManager.isEmpty).toHaveBeenCalledWith(context.state);
 		expect(component).toHaveClass('addButton');
+		// TODO: Test for existence first.
 		expect(component).toBeInTheDocument();
 		expect(component).toHaveProperty('disabled', true);
 	});
 
 	test('When selected action triggers', () => {
+		// TODO: Remove unnecessary mockReturnValue.
 		jest.spyOn(Remote, 'addCar').mockReturnValue();
 
 		const component = render(AddButton(context)).getByRole('addButton');

@@ -5,6 +5,7 @@ import Model from './model';
 describe('model', () => {
 	const context = {
 		state: {
+			// TODO: User randomStrings.
 			make: 'BMW',
 			model: '',
 		},
@@ -13,6 +14,7 @@ describe('model', () => {
 		},
 		config: {
 			model: {
+				// TODO: User randomStrings.
 				BMW: ['M3'],
 			},
 		},
@@ -22,6 +24,7 @@ describe('model', () => {
 		const component = render(Model(context)).getByRole('model');
 
 		expect(component).toBeInTheDocument();
+		// TODO: Test the rendering of options.
 		expect(component).toHaveClass('model');
 	});
 	test('when selected action triggers', () => {

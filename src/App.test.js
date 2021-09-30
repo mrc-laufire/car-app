@@ -17,6 +17,7 @@ describe('App', () => {
 	test('renders the react app', () => {
 		const { getByRole } = render(<App/>);
 
+		// TODO: Use forEach.
 		const appComponent = getByRole('App');
 		const makeComponent = getByRole('make');
 		const modelComponent = getByRole('model');

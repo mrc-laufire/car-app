@@ -19,6 +19,7 @@ describe('carManager', () => {
 		expect(result).toEqual([data]);
 	});
 	test('isEmpty', () => {
+		// TODO: Test all the cases.
 		const result = carManager.isEmpty(state);
 
 		expect(result).toEqual(false);
@@ -38,6 +39,7 @@ describe('carManager', () => {
 			expect(result).toEqual(mockReturn);
 		});
 
+		// TODO: Fix the description.
 		test('returns the cars without mentioned vehicleNumber', () => {
 			const mockCars = [
 				{ ...state, id: rndNumber },

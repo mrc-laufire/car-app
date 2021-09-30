@@ -24,6 +24,7 @@ describe('VehicleNumber', () => {
 		expect(component).toHaveAttribute('value', vehicleNumber);
 	});
 	test('When changed triggers action', () => {
+		// TODO: Use random strings.
 		const value = 'TN59AB1999';
 		const component = render(VehicleNumber(context))
 			.getByRole('vehicleNumber');

@@ -32,6 +32,7 @@ describe('Remote', () => {
 
 		const result = await Remote.fetch();
 
+		// TODO: Remove the unnecessary check.
 		expect(result).toBeUndefined();
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/cars');
 		expect(context.actions.updateCars).toHaveBeenCalledWith(data);
@@ -43,6 +44,7 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'post').mockReturnValue(mockValue);
 
+		// TODO: Test the failure case.
 		const result = await Remote.addCar();
 
 		expect(result).toBeUndefined();
@@ -58,6 +60,7 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'delete').mockReturnValue(1);
 
+		// TODO: Test the failure case.
 		const result = await Remote.removeCar(id);
 
 		expect(result).toBeUndefined();

@@ -14,6 +14,7 @@ const App = () => {
 
 	useEffect(Remote.fetch, []);
 	// eslint-disable-next-line no-console
+	// TODO: Don't commit with debug snippets.
 	console.log(state);
 
 	return (

@@ -20,6 +20,7 @@ const addCar = (context) => ({
 	cars: carManager.addCar(context),
 });
 
+// TODO: Rename.
 const resetInput = ({ state, seed }) => ({
 	...seed,
 	cars: state.cars,

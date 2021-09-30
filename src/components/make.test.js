@@ -12,12 +12,15 @@ describe('Make', () => {
 		},
 		config: {
 			model: {
+				// TODO: User randomStrings.
 				BMW: [],
 			},
 		},
 	};
 
 	test('Renders the component', () => {
+		// TODO: Test for the attribute, value.
+		// TODO: Test for the rendering of options.
 		const component = render(Make(context)).getByRole('make');
 
 		expect(component).toHaveClass('make');

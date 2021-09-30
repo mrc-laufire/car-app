@@ -1,8 +1,10 @@
 import axios from 'axios';
+// TODO: Don't import context.
 import context from '../core/context';
 
 const Remote = {
 	fetch: async () => {
+		// TODO: Get the baseURL from config.
 		const result = await axios.get('http://localhost:4000/cars');
 
 		context.actions.updateCars(result.data);

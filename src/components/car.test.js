@@ -4,6 +4,7 @@ import * as RemoveButton from './removeButton';
 import Car from './car';
 
 describe('car', () => {
+	// TODO: Use random strings.
 	const car = {
 		make: 'make',
 		model: 'model',
@@ -13,6 +14,7 @@ describe('car', () => {
 	const id = 'id';
 
 	test('Renders the component', () => {
+		// TODO: Test for the rendering of removeButton.
 		const removeButtonMock = jest.spyOn(RemoveButton, 'default')
 			.mockReturnValue([]);
 
