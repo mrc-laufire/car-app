@@ -1,5 +1,4 @@
 import { React } from 'react';
-import { values, filter } from '@laufire/utils/collection';
 
 const modelOption = (model) =>
 	<option key={ model } value={ model }>{model}</option>;
@@ -8,9 +7,7 @@ const modelOption = (model) =>
 const Model = (context) => {
 	const { state, config } = context;
 	const { make, model } = state;
-	// TODO: The following two lines are unnecessarily complex.
-	const filteredModel = filter(config.model, (dummy, key) => key === make);
-	const [models] = values(filteredModel);
+	const models = config.model[make];
 
 	return (
 		<select
