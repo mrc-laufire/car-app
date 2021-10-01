@@ -10,12 +10,7 @@ import Remote from './services/remote';
 import context from './core/context';
 
 const App = () => {
-	const { state } = context;
-
 	useEffect(Remote.fetch, []);
-	// eslint-disable-next-line no-console
-	// TODO: Don't commit with debug snippets.
-	console.log(state);
 
 	return (
 		<div className="App" role="App">
