@@ -73,4 +73,11 @@ describe('Actions', () => {
 
 		expect(result).toEqual({ cars: data });
 	});
+	test('updateBrands', () => {
+		const data = { Audi: ['Q8', 'R8'] };
+
+		const result = actions.updateBrands({ data });
+
+		expect(result).toEqual({ brands: data });
+	});
 });

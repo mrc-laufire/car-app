@@ -10,6 +10,7 @@ import Remote from './services/remote';
 import context from './core/context';
 
 const App = () => {
+	useEffect(Remote.getBrands, []);
 	useEffect(Remote.fetch, []);
 
 	return (

@@ -1,6 +1,7 @@
 import axios from 'axios';
 // TODO: Don't import context.
 import context from '../core/context';
+import HelperService from './helper-service';
 
 const Remote = {
 	fetch: async () => {
@@ -26,6 +27,11 @@ const Remote = {
 			.delete(`http://localhost:4000/cars/${ id }`);
 
 		result && context.actions.removeCar(id);
+	},
+	getBrands: async () => {
+		const { data } = await axios.get('http://localhost:4000/brand');
+
+		context.actions.updateBrands(HelperService.index(data, 'make'));
 	},
 };
 

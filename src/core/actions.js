@@ -34,6 +34,10 @@ const updateCars = ({ data }) => ({
 	cars: data,
 });
 
+const updateBrands = ({ data }) => ({
+	brands: data,
+});
+
 const actions = {
 	setMake,
 	setModel,
@@ -43,6 +47,7 @@ const actions = {
 	resetInput,
 	removeCar,
 	updateCars,
+	updateBrands,
 };
 
 export default actions;

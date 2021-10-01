@@ -8,6 +8,7 @@ const seed = {
 	vehicleNumber: '',
 	purchaseDate: Helpers.formatDate(new Date()),
 	cars: [],
+	brands: {},
 };
 
 export default seed;
