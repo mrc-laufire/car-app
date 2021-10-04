@@ -32,10 +32,8 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'get').mockReturnValue(mockValue);
 
-		const result = await Remote.fetch();
+		await Remote.fetch();
 
-		// TODO: Remove the unnecessary check.
-		expect(result).toBeUndefined();
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/cars');
 		expect(context.actions.updateCars).toHaveBeenCalledWith(data);
 	});

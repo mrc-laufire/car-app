@@ -5,9 +5,8 @@ const modelOption = (model) =>
 
 // TODO: Use generators.
 const Model = (context) => {
-	const { state, config } = context;
-	const { make, model } = state;
-	const models = config.model[make];
+	const { state } = context;
+	const { model, models } = state;
 
 	return (
 		<select

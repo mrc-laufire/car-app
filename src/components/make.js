@@ -1,11 +1,10 @@
 import { React } from 'react';
-import { keys } from '@laufire/utils/collection';
 
 const makeOption = (make) =>
 	<option key={ make } value={ make }>{make}</option>;
 
 const Make = (context) => {
-	const { state, config } = context;
+	const { state } = context;
 	const { make } = state;
 
 	return (
@@ -13,9 +12,12 @@ const Make = (context) => {
 			role="make"
 			className="make"
 			value={ make }
-			onChange={ (evt) => context.actions.setMake(evt.target.value) }
+			onChange={ (evt) => {
+				context.actions.setMake(evt.target.value);
+				context.actions.setModels(state.brands[evt.target.value]);
+			} }
 		>
-			{keys(config.model).map(makeOption)};
+			{state.makes.map(makeOption)};
 		</select>
 	);
 };

@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import carManager from '../services/carManager';
+import * as collection from '@laufire/utils/collection';
 import actions from './actions';
 
 describe('Actions', () => {
@@ -75,9 +76,18 @@ describe('Actions', () => {
 	});
 	test('updateBrands', () => {
 		const data = { Audi: ['Q8', 'R8'] };
+		const expectedResult = { brands: data, makes: 'Audi' };
+
+		jest.spyOn(collection, 'keys').mockReturnValue('Audi');
 
 		const result = actions.updateBrands({ data });
 
-		expect(result).toEqual({ brands: data });
+		expect(result).toEqual(expectedResult);
+	});
+	test('setModels', () => {
+		const models = [Symbol('models')];
+		const result = actions.setModels({ data: models });
+
+		expect(result).toEqual({ models });
 	});
 });
