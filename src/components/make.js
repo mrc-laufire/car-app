@@ -15,6 +15,7 @@ const Make = (context) => {
 			onChange={ (evt) => {
 				context.actions.setMake(evt.target.value);
 				context.actions.setModels(state.brands[evt.target.value]);
+				context.actions.updateModel(state.brands[evt.target.value][0]);
 			} }
 		>
 			{state.makes.map(makeOption)};

@@ -1,4 +1,3 @@
-import { keys } from '@laufire/utils/collection';
 import carManager from '../services/carManager';
 
 const setMake = ({ data }) => ({
@@ -22,11 +21,9 @@ const addCar = (context) => ({
 });
 
 // TODO: Rename.
-const resetInput = ({ state, seed }) => ({
-	...seed,
-	brands: state.brands,
-	makes: state.makes,
-	cars: state.cars,
+const resetInput = ({ seed }) => ({
+	vehicleNumber: seed.vehicleNumber,
+	purchaseDate: seed.purchaseDate,
 });
 
 const removeCar = ({ state, data }) => ({
@@ -39,7 +36,22 @@ const updateCars = ({ data }) => ({
 
 const updateBrands = ({ data }) => ({
 	brands: data,
-	makes: keys(data),
+});
+
+const updateMakes = ({ data }) => ({
+	makes: data,
+});
+
+const updateMake = ({ data }) => ({
+	make: data,
+});
+
+const updateModels = ({ data }) => ({
+	models: data,
+});
+
+const updateModel = ({ data }) => ({
+	model: data,
 });
 
 const setModels = ({ data }) => ({
@@ -56,6 +68,10 @@ const actions = {
 	removeCar,
 	updateCars,
 	updateBrands,
+	updateMakes,
+	updateMake,
+	updateModels,
+	updateModel,
 	setModels,
 };
 

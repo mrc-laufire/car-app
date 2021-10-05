@@ -1,6 +1,7 @@
 import axios from 'axios';
 // TODO: Don't import context.
 import context from '../core/context';
+import BrandManager from './brandManager';
 import HelperService from './helper-service';
 
 const Remote = {
@@ -31,7 +32,9 @@ const Remote = {
 	getBrands: async () => {
 		const { data } = await axios.get('http://localhost:4000/brand');
 
-		context.actions.updateBrands(HelperService.index(data, 'make'));
+		const brands = HelperService.index(data, 'make');
+
+		BrandManager.updateBrands(context, brands);
 	},
 };
 

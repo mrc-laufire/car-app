@@ -15,6 +15,7 @@ describe('Make', () => {
 		actions: {
 			setMake: jest.fn(),
 			setModels: jest.fn(),
+			updateModel: jest.fn(),
 		},
 	};
 
@@ -34,5 +35,6 @@ describe('Make', () => {
 
 		expect(context.actions.setMake).toHaveBeenCalledWith(value);
 		expect(context.actions.setModels).toHaveBeenCalledWith([value]);
+		expect(context.actions.updateModel).toHaveBeenCalledWith(value);
 	});
 });

@@ -1,6 +1,7 @@
+/* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
 import carManager from '../services/carManager';
-import * as collection from '@laufire/utils/collection';
+import { rndValue } from '@laufire/utils/random';
 import actions from './actions';
 
 describe('Actions', () => {
@@ -46,12 +47,14 @@ describe('Actions', () => {
 		expect(result).toEqual({ cars: addCar });
 	});
 	test('resetInput', () => {
-		const seed = { make: Symbol('make') };
-		const cars = Symbol('cars');
+		const seed = {
+			purchaseDate: Symbol('purchaseDate'),
+			vehicleNumber: Symbol('vehicleNumber'),
+		};
 		const result = actions
-			.resetInput({ state: { cars }, seed: seed });
+			.resetInput({ seed });
 
-		expect(result).toEqual({ ...seed, cars });
+		expect(result).toEqual(seed);
 	});
 	test('removeCar', () => {
 		const state = { cars: [] };
@@ -76,11 +79,41 @@ describe('Actions', () => {
 	});
 	test('updateBrands', () => {
 		const data = { Audi: ['Q8', 'R8'] };
-		const expectedResult = { brands: data, makes: 'Audi' };
-
-		jest.spyOn(collection, 'keys').mockReturnValue('Audi');
+		const expectedResult = { brands: data };
 
 		const result = actions.updateBrands({ data });
+
+		expect(result).toEqual(expectedResult);
+	});
+	test('updateMakes', () => {
+		const data = ['Audi', 'BMW', 'Benz'];
+		const expectedResult = { makes: data };
+
+		const result = actions.updateMakes({ data });
+
+		expect(result).toEqual(expectedResult);
+	});
+	test('updateMake', () => {
+		const data = rndValue(['Audi', 'BMW', 'Benz']);
+		const expectedResult = { make: data };
+
+		const result = actions.updateMake({ data });
+
+		expect(result).toEqual(expectedResult);
+	});
+	test('updateModels', () => {
+		const data = ['M3', '320d', '520d'];
+		const expectedResult = { models: data };
+
+		const result = actions.updateModels({ data });
+
+		expect(result).toEqual(expectedResult);
+	});
+	test('updateModel', () => {
+		const data = rndValue(['M3', '320d', '520d']);
+		const expectedResult = { model: data };
+
+		const result = actions.updateModel({ data });
 
 		expect(result).toEqual(expectedResult);
 	});
