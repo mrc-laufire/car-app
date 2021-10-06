@@ -3,34 +3,32 @@ import { keys } from '@laufire/utils/collection';
 const BrandManager = {
 	updateBrands: (context, data) => {
 		context.actions.updateBrands(data);
-		BrandManager.updateMakes({ ...context, data });
+		BrandManager.updateMakes({ ...context, data: keys(data) });
 	},
 	updateMakes: (context) => {
 		const { actions, data } = context;
-		const makes = keys(data);
 
-		actions.updateMakes(makes);
-		BrandManager.updateMake({ ...context, data: makes });
+		actions.updateMakes(data);
+		BrandManager.updateMake({ ...context, data: data[0] });
 	},
 	updateMake: (context) => {
 		const { actions, data } = context;
-		const [make] = data;
 
-		actions.updateMake(make);
-		BrandManager.updateModels({ ...context, data: make });
+		actions.updateMake(data);
+		BrandManager.updateModels({
+			...context, data: context.state.brands[data],
+		});
 	},
 	updateModels: (context) => {
 		const { actions, data } = context;
-		const models = context.state.brands[data];
 
-		actions.updateModels(models);
-		BrandManager.updateModel({ ...context, data: models });
+		actions.updateModels(data);
+		BrandManager.updateModel({ ...context, data: data[0] });
 	},
 	updateModel: (context) => {
 		const { actions, data } = context;
-		const [model] = data;
 
-		actions.updateModel(model);
+		actions.updateModel(data);
 	},
 };
 

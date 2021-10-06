@@ -1,18 +1,15 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
-import { rndString } from '@laufire/utils/random';
+import TestHelpers from '../../test/helpers';
+import BrandManager from '../services/brandManager';
 import Model from './model';
 
 describe('model', () => {
-	const strLength = 4;
-	const value = rndString(strLength);
+	const value = TestHelpers.rndString();
 	const context = {
 		state: {
 			model: '',
 			models: [value],
-		},
-		actions: {
-			setModel: jest.fn(),
 		},
 	};
 
@@ -24,10 +21,13 @@ describe('model', () => {
 		expect(component).toHaveClass('model');
 	});
 	test('when selected action triggers', () => {
+		jest.spyOn(BrandManager, 'updateModel').mockImplementation();
+
 		const component = render(Model(context)).getByRole('model');
 
 		fireEvent.change(component, { target: { value }});
 
-		expect(context.actions.setModel).toHaveBeenCalledWith(value);
+		expect(BrandManager.updateModel)
+			.toHaveBeenCalledWith({ ...context, data: value });
 	});
 });

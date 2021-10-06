@@ -1,4 +1,5 @@
 import { React } from 'react';
+import BrandManager from '../services/brandManager';
 
 const modelOption = (model) =>
 	<option key={ model } value={ model }>{model}</option>;
@@ -13,7 +14,9 @@ const Model = (context) => {
 			role="model"
 			className="model"
 			value={ model }
-			onChange={ (evt) => context.actions.setModel(evt.target.value) }
+			onChange={ (evt) =>
+				BrandManager
+					.updateModel({ ...context, data: evt.target.value }) }
 		>
 			{models.map(modelOption)};
 		</select>

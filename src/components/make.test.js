@@ -1,21 +1,16 @@
+/* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
-import { rndString } from '@laufire/utils/random';
+import TestHelpers from '../../test/helpers';
 import Make from './make';
+import BrandManager from '../services/brandManager';
 
-// eslint-disable-next-line max-lines-per-function
 describe('Make', () => {
-	const strLength = 4;
-	const value = rndString(strLength);
+	const value = TestHelpers.rndString();
 	const context = {
 		state: {
 			make: '',
 			makes: [value],
 			brands: { [value]: [value] },
-		},
-		actions: {
-			setMake: jest.fn(),
-			setModels: jest.fn(),
-			updateModel: jest.fn(),
 		},
 	};
 
@@ -29,12 +24,13 @@ describe('Make', () => {
 	});
 
 	test('When selected action triggers', () => {
+		jest.spyOn(BrandManager, 'updateMake').mockImplementation();
+
 		const component = render(Make(context)).getByRole('make');
 
 		fireEvent.change(component, { target: { value }});
 
-		expect(context.actions.setMake).toHaveBeenCalledWith(value);
-		expect(context.actions.setModels).toHaveBeenCalledWith([value]);
-		expect(context.actions.updateModel).toHaveBeenCalledWith(value);
+		expect(BrandManager.updateMake)
+			.toHaveBeenCalledWith({ ...context, data: value });
 	});
 });

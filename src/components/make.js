@@ -1,4 +1,5 @@
 import { React } from 'react';
+import BrandManager from '../services/brandManager';
 
 const makeOption = (make) =>
 	<option key={ make } value={ make }>{make}</option>;
@@ -13,9 +14,8 @@ const Make = (context) => {
 			className="make"
 			value={ make }
 			onChange={ (evt) => {
-				context.actions.setMake(evt.target.value);
-				context.actions.setModels(state.brands[evt.target.value]);
-				context.actions.updateModel(state.brands[evt.target.value][0]);
+				BrandManager
+					.updateMake({ ...context, data: evt.target.value });
 			} }
 		>
 			{state.makes.map(makeOption)};
