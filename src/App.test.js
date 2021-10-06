@@ -1,36 +1,36 @@
 /* eslint-disable max-lines-per-function */
-/* eslint-disable max-statements */
-/* eslint-disable react/display-name */
-jest.mock('./components/make', () => () => <div role="make"/>);
-jest.mock('./components/model', () => () => <div role="model"/>);
-jest.mock('./components/vehicleNumber', () => () =>
-	<div role="vehicleNumber"/>);
-jest.mock('./components/purchaseDate', () => () => <div role="purchaseDate"/>);
-jest.mock('./components/cars', () => () => <div role="cars"/>);
-jest.mock('./core/context', () => ({ state: {}}));
-
-import { render } from '@testing-library/react';
 import { React } from 'react';
+import { render } from '@testing-library/react';
+import context from './core/context';
+import * as make from './components/make';
+import * as model from './components/model';
+import * as vehicleNumber from './components/vehicleNumber';
+import * as purchaseDate from './components/purchaseDate';
+import * as addButton from './components/addButton';
+import * as cars from './components/cars';
 import App from './App';
 
 describe('App', () => {
 	test('renders the react app', () => {
+		const data = [
+			[make, 'make'],
+			[model, 'model'],
+			[vehicleNumber, 'vehicleNumber'],
+			[purchaseDate, 'purchaseDate'],
+			[addButton, 'addButton'],
+			[cars, 'cars'],
+		];
+
+		data.forEach(([lib, value]) => jest.spyOn(lib, 'default')
+			.mockReturnValue(<div role={ value }/>));
+
 		const { getByRole } = render(<App/>);
 
-		// TODO: Use forEach.
-		const appComponent = getByRole('App');
-		const makeComponent = getByRole('make');
-		const modelComponent = getByRole('model');
-		const vehicleNumberComponent = getByRole('vehicleNumber');
-		const purchaseDateComponent = getByRole('purchaseDate');
-		const carsComponent = getByRole('cars');
-
-		expect(appComponent).toBeInTheDocument();
-		expect(appComponent).toHaveClass('App');
-		expect(makeComponent).toBeInTheDocument();
-		expect(modelComponent).toBeInTheDocument();
-		expect(vehicleNumberComponent).toBeInTheDocument();
-		expect(purchaseDateComponent).toBeInTheDocument();
-		expect(carsComponent).toBeInTheDocument();
+		expect(getByRole('App')).toBeInTheDocument();
+		expect(getByRole('App')).toHaveClass('App');
+		data.forEach(([lib, value]) => {
+			expect(getByRole(value)).toBeInTheDocument();
+			expect(lib.default).toHaveBeenCalledWith(context);
+		});
 	});
 });

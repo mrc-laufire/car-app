@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
+import { rndValue } from '@laufire/utils/random';
 import carManager from '../services/carManager';
 import Remote from '../services/remote';
 import AddButton from './addButton';
@@ -10,22 +11,21 @@ describe('AddButton', () => {
 	};
 
 	test('Renders the component', () => {
-		// TODO: Test both the cases or a random case.
-		jest.spyOn(carManager, 'isEmpty').mockReturnValue(true);
+		const mockEmpty = rndValue([true, false]);
+
+		jest.spyOn(carManager, 'isEmpty').mockReturnValue(mockEmpty);
 
 		const component = render(AddButton(context))
 			.getByRole('addButton');
 
+		expect(component).toBeInTheDocument();
 		expect(carManager.isEmpty).toHaveBeenCalledWith(context.state);
 		expect(component).toHaveClass('addButton');
-		// TODO: Test for existence first.
-		expect(component).toBeInTheDocument();
-		expect(component).toHaveProperty('disabled', true);
+		expect(component).toHaveProperty('disabled', mockEmpty);
 	});
 
 	test('When selected action triggers', () => {
-		// TODO: Remove unnecessary mockReturnValue.
-		jest.spyOn(Remote, 'addCar').mockReturnValue();
+		jest.spyOn(Remote, 'addCar').mockImplementation();
 
 		const component = render(AddButton(context)).getByRole('addButton');
 

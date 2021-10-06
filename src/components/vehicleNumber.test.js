@@ -1,11 +1,10 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
 import VehicleNumber from './vehicleNumber';
-import { rndString } from '@laufire/utils/random';
+import TestHelpers from '../../test/helpers';
 
 describe('VehicleNumber', () => {
-	const idLength = 8;
-	const vehicleNumber = rndString(idLength);
+	const vehicleNumber = TestHelpers.rndString();
 	const context = {
 		state: {
 			vehicleNumber,
@@ -24,8 +23,7 @@ describe('VehicleNumber', () => {
 		expect(component).toHaveAttribute('value', vehicleNumber);
 	});
 	test('When changed triggers action', () => {
-		// TODO: Use random strings.
-		const value = 'TN59AB1999';
+		const value = TestHelpers.rndString();
 		const component = render(VehicleNumber(context))
 			.getByRole('vehicleNumber');
 
