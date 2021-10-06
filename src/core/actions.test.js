@@ -1,38 +1,38 @@
 /* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
 import carManager from '../services/carManager';
+import { range } from '@laufire/utils/collection';
 import { rndValue } from '@laufire/utils/random';
+import TestHelpers from '../../test/helpers';
 import actions from './actions';
 
 describe('Actions', () => {
-	// TODO: Generate similar tets.
-	test('setVehicleNumber', () => {
-		const vehicleNumber = Symbol('vehicleNumber');
-		const result = actions.setVehicleNumber({ data: vehicleNumber });
+	const { rndString } = TestHelpers;
 
-		expect(result).toEqual({ vehicleNumber });
-	});
-	test('setPurchaseDate', () => {
-		const purchaseDate = Symbol('purchaseDate');
-		const result = actions.setPurchaseDate({ data: purchaseDate });
+	const expectations = [
+		['setVehicleNumber', 'vehicleNumber', rndString()],
+		['setPurchaseDate', 'purchaseDate', rndString()],
+	];
 
-		expect(result).toEqual({ purchaseDate });
+	test.each(expectations)('%p', (
+		action, key, data
+	) => {
+		const result = actions[action]({ data });
+
+		expect(result[key]).toEqual(data);
 	});
+
 	test('addCar', () => {
-		// TODO: Rename the constant to addedCar / carToAdd.
-		const addCar = Symbol('addCar');
-		const state = { cars: [] };
-		const data = {};
-		// TODO: Remove unnecessary constants.
-		const context = { state, data };
+		const addedCar = Symbol('addCar');
+		const context = { state: { cars: [] }, data: {}};
 
 		jest.spyOn(carManager, 'addCar')
-			.mockReturnValue(addCar);
+			.mockReturnValue(addedCar);
 
 		const result = actions.addCar(context);
 
 		expect(carManager.addCar).toHaveBeenCalledWith(context);
-		expect(result).toEqual({ cars: addCar });
+		expect(result).toEqual({ cars: addedCar });
 	});
 	test('resetInputs', () => {
 		const seed = {
@@ -58,9 +58,11 @@ describe('Actions', () => {
 		expect(result).toEqual(expectedResult);
 	});
 	test('update', () => {
-		const data = Symbol('data');
+		const min = 0;
+		const max = 3;
+		const data = range(min, max).map(() =>
+			({ make: rndString(), model: rndString() }));
 
-		// TODO:Mimic real call signature.
 		const result = actions.updateCars({ data });
 
 		expect(result).toEqual({ cars: data });

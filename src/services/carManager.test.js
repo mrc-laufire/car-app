@@ -18,12 +18,20 @@ describe('carManager', () => {
 
 		expect(result).toEqual([data]);
 	});
-	test('isEmpty', () => {
-		// TODO: Test all the cases.
-		const result = carManager.isEmpty(state);
 
-		expect(result).toEqual(false);
+	const expectations = [
+		['empty', state, false],
+		['not empty', { ...state, model: '' }, true],
+	];
+
+	test.each(expectations)('isEmpty confirms that inputs is %p', (
+		dummy, input, bool
+	) => {
+		const result = carManager.isEmpty(input);
+
+		expect(result).toEqual(bool);
 	});
+
 	describe('removeCar', () => {
 		const hundred = 100;
 		const thousand = 1000;
@@ -39,8 +47,7 @@ describe('carManager', () => {
 			expect(result).toEqual(mockReturn);
 		});
 
-		// TODO: Fix the description.
-		test('returns the cars without mentioned vehicleNumber', () => {
+		test('removeCar removes the mentioned car', () => {
 			const mockCars = [
 				{ ...state, id: rndNumber },
 				{ ...state, id: thousand },

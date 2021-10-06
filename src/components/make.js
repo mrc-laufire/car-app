@@ -2,7 +2,7 @@ import { React } from 'react';
 import BrandManager from '../services/brandManager';
 
 const makeOption = (make) =>
-	<option key={ make } value={ make }>{make}</option>;
+	<option key={ make } role="option" value={ make }>{make}</option>;
 
 const Make = (context) => {
 	const { state } = context;

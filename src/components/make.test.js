@@ -1,26 +1,29 @@
 /* eslint-disable max-lines-per-function */
 import { render, fireEvent } from '@testing-library/react';
 import TestHelpers from '../../test/helpers';
-import Make from './make';
 import BrandManager from '../services/brandManager';
+import Make from './make';
 
 describe('Make', () => {
 	const value = TestHelpers.rndString();
 	const context = {
 		state: {
-			make: '',
-			makes: [value],
+			make: value,
+			makes: [TestHelpers.rndString(), value],
 			brands: { [value]: [value] },
 		},
 	};
 
 	test('Renders the component', () => {
-		// TODO: Test for the attribute, value.
-		// TODO: Test for the rendering of options.
-		const component = render(Make(context)).getByRole('make');
+		const { getByRole, getAllByRole } = render(Make(context));
+
+		const component = getByRole('make');
+		const options = getAllByRole('option');
 
 		expect(component).toHaveClass('make');
 		expect(component).toBeInTheDocument();
+		expect(component.value).toEqual(context.state.make);
+		options.map((option) => expect(option).toBeInTheDocument());
 	});
 
 	test('When selected action triggers', () => {

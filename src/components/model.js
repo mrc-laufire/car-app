@@ -2,7 +2,7 @@ import { React } from 'react';
 import BrandManager from '../services/brandManager';
 
 const modelOption = (model) =>
-	<option key={ model } value={ model }>{model}</option>;
+	<option key={ model } role="option" value={ model }>{model}</option>;
 
 // TODO: Use generators.
 const Model = (context) => {

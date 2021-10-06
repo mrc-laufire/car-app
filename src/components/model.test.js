@@ -8,17 +8,21 @@ describe('model', () => {
 	const value = TestHelpers.rndString();
 	const context = {
 		state: {
-			model: '',
-			models: [value],
+			model: value,
+			models: [TestHelpers.rndString(), value],
 		},
 	};
 
 	test('renders the model component', () => {
-		const component = render(Model(context)).getByRole('model');
+		const { getByRole, getAllByRole } = render(Model(context));
+
+		const component = getByRole('model');
+		const options = getAllByRole('option');
 
 		expect(component).toBeInTheDocument();
-		// TODO: Test the rendering of options.
 		expect(component).toHaveClass('model');
+		expect(component.value).toEqual(context.state.model);
+		options.map((option) => expect(option).toBeInTheDocument());
 	});
 	test('when selected action triggers', () => {
 		jest.spyOn(BrandManager, 'updateModel').mockImplementation();
