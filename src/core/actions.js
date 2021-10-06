@@ -1,13 +1,5 @@
 import carManager from '../services/carManager';
 
-const setMake = ({ data }) => ({
-	make: data,
-});
-
-const setModel = ({ data }) => ({
-	model: data,
-});
-
 const setVehicleNumber = ({ data }) => ({
 	vehicleNumber: data,
 });
@@ -59,8 +51,6 @@ const setModels = ({ data }) => ({
 });
 
 const actions = {
-	setMake,
-	setModel,
 	setVehicleNumber,
 	setPurchaseDate,
 	addCar,
