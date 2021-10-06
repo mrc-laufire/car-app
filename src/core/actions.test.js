@@ -34,13 +34,13 @@ describe('Actions', () => {
 		expect(carManager.addCar).toHaveBeenCalledWith(context);
 		expect(result).toEqual({ cars: addCar });
 	});
-	test('resetInput', () => {
+	test('resetInputs', () => {
 		const seed = {
 			purchaseDate: Symbol('purchaseDate'),
 			vehicleNumber: Symbol('vehicleNumber'),
 		};
 		const result = actions
-			.resetInput({ seed });
+			.resetInputs({ seed });
 
 		expect(result).toEqual(seed);
 	});

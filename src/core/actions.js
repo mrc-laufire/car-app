@@ -12,8 +12,7 @@ const addCar = (context) => ({
 	cars: carManager.addCar(context),
 });
 
-// TODO: Rename.
-const resetInput = ({ seed }) => ({
+const resetInputs = ({ seed }) => ({
 	vehicleNumber: seed.vehicleNumber,
 	purchaseDate: seed.purchaseDate,
 });
@@ -54,7 +53,7 @@ const actions = {
 	setVehicleNumber,
 	setPurchaseDate,
 	addCar,
-	resetInput,
+	resetInputs,
 	removeCar,
 	updateCars,
 	updateBrands,

@@ -12,7 +12,7 @@ jest.mock('../core/context', () => ({
 	actions: {
 		updateCars: jest.fn(),
 		addCar: jest.fn(),
-		resetInput: jest.fn(),
+		resetInputs: jest.fn(),
 		removeCar: jest.fn(),
 	},
 }));
@@ -51,7 +51,7 @@ describe('Remote', () => {
 		expect(axios.post)
 			.toHaveBeenCalledWith('http://localhost:4000/cars', state);
 		expect(context.actions.addCar).toHaveBeenCalledWith(data);
-		expect(context.actions.resetInput).toHaveBeenCalledWith();
+		expect(context.actions.resetInputs).toHaveBeenCalledWith();
 	});
 
 	test('removeCar', async () => {

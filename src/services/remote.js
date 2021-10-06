@@ -21,7 +21,7 @@ const Remote = {
 		});
 
 		result.data && (context.actions.addCar(result.data)
-			|| context.actions.resetInput());
+			|| context.actions.resetInputs());
 	},
 	removeCar: async (id) => {
 		const result = await axios
