@@ -1,20 +1,19 @@
-import { rndBetween } from '@laufire/utils/random';
-
-const state = {
-	make: '',
-	model: '',
-	vehicleNumber: '',
-	purchaseDate: '',
-};
-
 /* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
 import axios from 'axios';
+import { rndBetween } from '@laufire/utils/random';
 import BrandManager from './brandManager';
 import HelperService from './helper-service';
+import config from '../core/config';
 import Remote from './remote';
 
 describe('Remote', () => {
+	const state = {
+		make: '',
+		model: '',
+		vehicleNumber: '',
+		purchaseDate: '',
+	};
 	const context = {
 		state: state,
 		actions: {
@@ -33,7 +32,7 @@ describe('Remote', () => {
 
 		await Remote.fetch(context);
 
-		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/cars');
+		expect(axios.get).toHaveBeenCalledWith(config.baseURL.cars);
 		expect(context.actions.setCars).toHaveBeenCalledWith(data);
 	});
 
@@ -46,7 +45,7 @@ describe('Remote', () => {
 		await Remote.addCar(context);
 
 		expect(axios.post)
-			.toHaveBeenCalledWith('http://localhost:4000/cars', state);
+			.toHaveBeenCalledWith(config.baseURL.cars, state);
 		expect(context.actions.addCar).toHaveBeenCalledWith(data);
 		expect(context.actions.resetInputs).toHaveBeenCalledWith();
 	});
@@ -60,7 +59,7 @@ describe('Remote', () => {
 		await Remote.removeCar(context, id);
 
 		expect(axios.delete)
-			.toHaveBeenCalledWith(`http://localhost:4000/cars/${ id }`);
+			.toHaveBeenCalledWith(`${ config.baseURL.cars }/${ id }`);
 		expect(context.actions.removeCar).toHaveBeenCalledWith(id);
 	});
 
@@ -74,7 +73,7 @@ describe('Remote', () => {
 
 		await Remote.getBrands(context);
 
-		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/brand');
+		expect(axios.get).toHaveBeenCalledWith(config.baseURL.brands);
 		expect(HelperService.index).toHaveBeenCalledWith(data, 'make');
 		expect(BrandManager.setBrands).toHaveBeenCalledWith(context, data);
 	});
