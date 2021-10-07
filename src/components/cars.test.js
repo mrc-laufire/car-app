@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { React } from 'react';
 import { render } from '@testing-library/react';
 import Cars from './cars';
@@ -5,8 +6,9 @@ import * as Car from './car';
 import { range } from '@laufire/utils/collection';
 
 describe('cars', () => {
-	// eslint-disable-next-line no-magic-numbers
-	const cars = range(0, 10);
+	const max = 10;
+	const min = 0;
+	const cars = range(min, max);
 	const context = {
 		state: {
 			cars,
