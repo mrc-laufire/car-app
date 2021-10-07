@@ -34,8 +34,8 @@ describe.each(expectations)('genSelect generates the %p', (type, source) => {
 
 	test('When selected the option, action triggers', () => {
 		const types = {
-			make: { action: 'updateMake' },
-			model: { action: 'updateModel' },
+			make: { action: 'setMake' },
+			model: { action: 'setModel' },
 		};
 
 		jest.spyOn(BrandManager, [types[type].action]).mockImplementation();

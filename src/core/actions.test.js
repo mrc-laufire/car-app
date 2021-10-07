@@ -57,53 +57,53 @@ describe('Actions', () => {
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('update', () => {
+	test('set', () => {
 		const min = 0;
 		const max = 3;
 		const data = range(min, max).map(() =>
 			({ make: rndString(), model: rndString() }));
 
-		const result = actions.updateCars({ data });
+		const result = actions.setCars({ data });
 
 		expect(result).toEqual({ cars: data });
 	});
-	test('updateBrands', () => {
+	test('setBrands', () => {
 		const data = { Audi: ['Q8', 'R8'] };
 		const expectedResult = { brands: data };
 
-		const result = actions.updateBrands({ data });
+		const result = actions.setBrands({ data });
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('updateMakes', () => {
+	test('setMakes', () => {
 		const data = ['Audi', 'BMW', 'Benz'];
 		const expectedResult = { makes: data };
 
-		const result = actions.updateMakes({ data });
+		const result = actions.setMakes({ data });
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('updateMake', () => {
+	test('setMake', () => {
 		const data = rndValue(['Audi', 'BMW', 'Benz']);
 		const expectedResult = { make: data };
 
-		const result = actions.updateMake({ data });
+		const result = actions.setMake({ data });
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('updateModels', () => {
+	test('setModels', () => {
 		const data = ['M3', '320d', '520d'];
 		const expectedResult = { models: data };
 
-		const result = actions.updateModels({ data });
+		const result = actions.setModels({ data });
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('updateModel', () => {
+	test('setModel', () => {
 		const data = rndValue(['M3', '320d', '520d']);
 		const expectedResult = { model: data };
 
-		const result = actions.updateModel({ data });
+		const result = actions.setModel({ data });
 
 		expect(result).toEqual(expectedResult);
 	});

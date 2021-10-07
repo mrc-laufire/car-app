@@ -10,7 +10,7 @@ const state = {
 jest.mock('../core/context', () => ({
 	state: state,
 	actions: {
-		updateCars: jest.fn(),
+		setCars: jest.fn(),
 		addCar: jest.fn(),
 		resetInputs: jest.fn(),
 		removeCar: jest.fn(),
@@ -35,7 +35,7 @@ describe('Remote', () => {
 		await Remote.fetch();
 
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/cars');
-		expect(context.actions.updateCars).toHaveBeenCalledWith(data);
+		expect(context.actions.setCars).toHaveBeenCalledWith(data);
 	});
 
 	test('addCar', async () => {
@@ -71,12 +71,12 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'get').mockReturnValue(mockValue);
 		jest.spyOn(HelperService, 'index').mockReturnValue(data);
-		jest.spyOn(BrandManager, 'updateBrands').mockReturnValue();
+		jest.spyOn(BrandManager, 'setBrands').mockReturnValue();
 
 		await Remote.getBrands();
 
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/brand');
 		expect(HelperService.index).toHaveBeenCalledWith(data, 'make');
-		expect(BrandManager.updateBrands).toHaveBeenCalledWith(context, data);
+		expect(BrandManager.setBrands).toHaveBeenCalledWith(context, data);
 	});
 });

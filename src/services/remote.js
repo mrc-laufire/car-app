@@ -9,7 +9,7 @@ const Remote = {
 	fetch: async () => {
 		const result = await axios.get(config.baseURL.cars);
 
-		context.actions.updateCars(result.data);
+		context.actions.setCars(result.data);
 	},
 	addCar: async () => {
 		const { state: { make, model, vehicleNumber, purchaseDate }} = context;
@@ -34,7 +34,7 @@ const Remote = {
 
 		const brands = HelperService.index(data, 'make');
 
-		BrandManager.updateBrands(context, brands);
+		BrandManager.setBrands(context, brands);
 	},
 };
 

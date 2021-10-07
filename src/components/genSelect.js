@@ -5,8 +5,8 @@ const listOption = (type) =>
 	<option key={ type } role="option" value={ type }>{type}</option>;
 
 const types = {
-	make: { action: 'updateMake', source: 'makes' },
-	model: { action: 'updateModel', source: 'models' },
+	make: { action: 'setMake', source: 'makes' },
+	model: { action: 'setModel', source: 'models' },
 };
 // eslint-disable-next-line react/display-name
 const genSelect = (type) => (context) => {

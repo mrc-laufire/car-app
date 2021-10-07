@@ -21,27 +21,27 @@ const removeCar = ({ state, data }) => ({
 	cars: carManager.removeCar(state, data),
 });
 
-const updateCars = ({ data }) => ({
+const setCars = ({ data }) => ({
 	cars: data,
 });
 
-const updateBrands = ({ data }) => ({
+const setBrands = ({ data }) => ({
 	brands: data,
 });
 
-const updateMakes = ({ data }) => ({
+const setMakes = ({ data }) => ({
 	makes: data,
 });
 
-const updateMake = ({ data }) => ({
+const setMake = ({ data }) => ({
 	make: data,
 });
 
-const updateModels = ({ data }) => ({
+const setModels = ({ data }) => ({
 	models: data,
 });
 
-const updateModel = ({ data }) => ({
+const setModel = ({ data }) => ({
 	model: data,
 });
 
@@ -51,12 +51,12 @@ const actions = {
 	addCar,
 	resetInputs,
 	removeCar,
-	updateCars,
-	updateBrands,
-	updateMakes,
-	updateMake,
-	updateModels,
-	updateModel,
+	setCars,
+	setBrands,
+	setMakes,
+	setMake,
+	setModels,
+	setModel,
 };
 
 export default actions;

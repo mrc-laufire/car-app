@@ -7,11 +7,11 @@ import BrandManager from './brandManager';
 describe('BrandManager', () => {
 	const context = {
 		actions: {
-			updateBrands: jest.fn(),
-			updateMakes: jest.fn(),
-			updateMake: jest.fn(),
-			updateModels: jest.fn(),
-			updateModel: jest.fn(),
+			setBrands: jest.fn(),
+			setMakes: jest.fn(),
+			setMake: jest.fn(),
+			setModels: jest.fn(),
+			setModel: jest.fn(),
 		},
 		state: {
 			brands: {
@@ -22,60 +22,60 @@ describe('BrandManager', () => {
 		},
 	};
 
-	test('updateBrands', () => {
+	test('setBrands', () => {
 		const data = { mock: Symbol('data') };
 
-		jest.spyOn(BrandManager, 'updateMakes').mockReturnValue();
+		jest.spyOn(BrandManager, 'setMakes').mockReturnValue();
 
-		BrandManager.updateBrands(context, data);
+		BrandManager.setBrands(context, data);
 
-		expect(context.actions.updateBrands).toHaveBeenCalledWith(data);
-		expect(BrandManager.updateMakes)
+		expect(context.actions.setBrands).toHaveBeenCalledWith(data);
+		expect(BrandManager.setMakes)
 			.toHaveBeenCalledWith({ ...context, data: keys(data) });
 	});
 
-	test('updateMakes', () => {
+	test('setMakes', () => {
 		const data = keys(context.state.brands);
 
-		jest.spyOn(BrandManager, 'updateMake').mockReturnValue();
+		jest.spyOn(BrandManager, 'setMake').mockReturnValue();
 
-		BrandManager.updateMakes({ ...context, data });
+		BrandManager.setMakes({ ...context, data });
 
-		expect(context.actions.updateMakes).toHaveBeenCalledWith(data);
-		expect(BrandManager.updateMake)
+		expect(context.actions.setMakes).toHaveBeenCalledWith(data);
+		expect(BrandManager.setMake)
 			.toHaveBeenCalledWith({ ...context, data: data[0] });
 	});
 
-	test('updateMake', () => {
+	test('setMake', () => {
 		const [data] = keys(context.state.brands);
 
-		jest.spyOn(BrandManager, 'updateModels').mockReturnValue();
+		jest.spyOn(BrandManager, 'setModels').mockReturnValue();
 
-		BrandManager.updateMake({ ...context, data });
+		BrandManager.setMake({ ...context, data });
 
-		expect(context.actions.updateMake).toHaveBeenCalledWith(data);
-		expect(BrandManager.updateModels).toHaveBeenCalledWith({
+		expect(context.actions.setMake).toHaveBeenCalledWith(data);
+		expect(BrandManager.setModels).toHaveBeenCalledWith({
 			...context, data: context.state.brands[data],
 		});
 	});
 
-	test('updateModels', () => {
+	test('setModels', () => {
 		const data = rndValue(values(context.state.brands));
 
-		jest.spyOn(BrandManager, 'updateModel').mockReturnValue();
+		jest.spyOn(BrandManager, 'setModel').mockReturnValue();
 
-		BrandManager.updateModels({ ...context, data });
+		BrandManager.setModels({ ...context, data });
 
-		expect(context.actions.updateModels).toHaveBeenCalledWith(data);
-		expect(BrandManager.updateModel)
+		expect(context.actions.setModels).toHaveBeenCalledWith(data);
+		expect(BrandManager.setModel)
 			.toHaveBeenCalledWith({ ...context, data: data[0] });
 	});
 
-	test('updateModel', () => {
+	test('setModel', () => {
 		const [data] = rndValue(values(context.state.brands));
 
-		BrandManager.updateModel({ ...context, data });
+		BrandManager.setModel({ ...context, data });
 
-		expect(context.actions.updateModel).toHaveBeenCalledWith(data);
+		expect(context.actions.setModel).toHaveBeenCalledWith(data);
 	});
 });
