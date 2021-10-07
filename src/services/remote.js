@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '../core/config';
-// TODO: Don't import context.
 import BrandManager from './brandManager';
 import HelperService from './helper-service';
 
