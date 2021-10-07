@@ -12,13 +12,13 @@ const addCar = (context) => ({
 	cars: carManager.addCar(context),
 });
 
-const resetInputs = ({ seed }) => ({
-	vehicleNumber: seed.vehicleNumber,
-	purchaseDate: seed.purchaseDate,
+const resetInputs = ({ seed: { vehicleNumber, purchaseDate }}) => ({
+	vehicleNumber,
+	purchaseDate,
 });
 
-const removeCar = ({ state, data }) => ({
-	cars: carManager.removeCar(state, data),
+const removeCar = (context) => ({
+	cars: carManager.removeCar(context),
 });
 
 const setCars = ({ data }) => ({

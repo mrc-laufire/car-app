@@ -42,7 +42,8 @@ describe('carManager', () => {
 
 			jest.spyOn(cars, 'filter').mockReturnValue(mockReturn);
 
-			const result = carManager.removeCar({ cars }, rndNumber);
+			const result = carManager
+				.removeCar({ state: { cars }, data: rndNumber });
 
 			expect(result).toEqual(mockReturn);
 		});
@@ -55,7 +56,8 @@ describe('carManager', () => {
 			const expectedResult = mockCars
 				.filter((car) => car.id !== rndNumber);
 
-			const result = carManager.removeCar({ cars: mockCars }, rndNumber);
+			const result = carManager
+				.removeCar({ state: { cars: mockCars }, data: rndNumber });
 
 			expect(result).toEqual(expectedResult);
 		});

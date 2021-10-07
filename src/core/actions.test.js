@@ -25,18 +25,24 @@ describe('Actions', () => {
 		expect(result[key]).toEqual(data);
 	});
 
-	test('addCar', () => {
-		const addedCar = Symbol('addCar');
+	const expectationsOne = [
+		['addCar'],
+		['removeCar'],
+	];
+
+	test.each(expectationsOne)('%p', (action) => {
+		const mockReturn = Symbol('mock');
 		const context = { state: { cars: [] }, data: {}};
 
-		jest.spyOn(carManager, 'addCar')
-			.mockReturnValue(addedCar);
+		jest.spyOn(carManager, action)
+			.mockReturnValue(mockReturn);
 
-		const result = actions.addCar(context);
+		const result = actions[action](context);
 
-		expect(carManager.addCar).toHaveBeenCalledWith(context);
-		expect(result).toEqual({ cars: addedCar });
+		expect(carManager[action]).toHaveBeenCalledWith(context);
+		expect(result).toEqual({ cars: mockReturn });
 	});
+
 	test('resetInputs', () => {
 		const seed = {
 			purchaseDate: Symbol('purchaseDate'),
@@ -46,18 +52,5 @@ describe('Actions', () => {
 			.resetInputs({ seed });
 
 		expect(result).toEqual(seed);
-	});
-	test('removeCar', () => {
-		const state = { cars: [] };
-		const vehicleNumber = 1;
-		const mockReturn = Symbol('removeCar');
-		const expectedResult = { cars: mockReturn };
-
-		jest.spyOn(carManager, 'removeCar').mockReturnValue(mockReturn);
-
-		const result = actions
-			.removeCar({ state: state, data: vehicleNumber });
-
-		expect(result).toEqual(expectedResult);
 	});
 });

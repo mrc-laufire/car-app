@@ -4,8 +4,8 @@ const addCar = ({ state: { cars }, data }) =>
 const isEmpty = ({ make, model, vehicleNumber, purchaseDate }) =>
 	[make, model, vehicleNumber, purchaseDate].includes('');
 
-const removeCar = ({ cars }, id) =>
-	cars.filter((car) => car.id !== id);
+const removeCar = ({ state: { cars }, data }) =>
+	cars.filter((car) => car.id !== data);
 
 const carManager = {
 	addCar,
