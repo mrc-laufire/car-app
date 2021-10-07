@@ -8,7 +8,7 @@ import { range } from '@laufire/utils/collection';
 describe('cars', () => {
 	const max = 10;
 	const min = 0;
-	const cars = range(min, max);
+	const cars = range(min, max).map((id) => ({ id: id, data: Symbol('car') }));
 	const context = {
 		state: {
 			cars,
@@ -17,7 +17,8 @@ describe('cars', () => {
 
 	test('Renders the component', () => {
 		jest.spyOn(Car, 'default')
-			.mockImplementation((dummy, i) => <div key={ i } role="car"/>);
+			.mockImplementation((dummy, { id }) =>
+				<div key={ id } role="car"/>);
 
 		const { getByRole, getAllByRole } = render(Cars(context));
 
