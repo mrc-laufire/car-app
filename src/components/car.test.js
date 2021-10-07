@@ -13,17 +13,18 @@ describe('car', () => {
 		purchaseDate: TestHelpers.rndString(),
 	};
 	const id = 'id';
+	const context = Symbol('context');
 
 	test('Renders the component', () => {
 		const removeButtonMock = jest.spyOn(RemoveButton, 'default')
 			.mockReturnValue(<div role="removeButton"/>);
 
-		const { getByRole } = render(Car({ ...car, id }));
+		const { getByRole } = render(Car(context, { ...car, id }));
 
 		expect(getByRole('car')).toBeInTheDocument();
 		expect(getByRole('car')).toHaveClass('car');
 		expect(getByRole('car')).toHaveTextContent(values(car).join(' '));
 		expect(getByRole('removeButton')).toBeInTheDocument();
-		expect(removeButtonMock).toHaveBeenCalledWith(id);
+		expect(removeButtonMock).toHaveBeenCalledWith(context, id);
 	});
 });

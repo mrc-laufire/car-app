@@ -31,6 +31,6 @@ describe('AddButton', () => {
 
 		fireEvent.click(component);
 
-		expect(Remote.addCar).toHaveBeenCalledWith();
+		expect(Remote.addCar).toHaveBeenCalledWith(context);
 	});
 });

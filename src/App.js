@@ -9,8 +9,8 @@ import context from './core/context';
 import getSelect from './components/genSelect';
 
 const App = () => {
-	useEffect(Remote.getBrands, []);
-	useEffect(Remote.fetch, []);
+	useEffect(() => Remote.getBrands(context), []);
+	useEffect(() => Remote.fetch(context), []);
 
 	return (
 		<div className="App" role="App">

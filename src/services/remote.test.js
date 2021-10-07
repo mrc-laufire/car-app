@@ -7,32 +7,31 @@ const state = {
 	purchaseDate: '',
 };
 
-jest.mock('../core/context', () => ({
-	state: state,
-	actions: {
-		setCars: jest.fn(),
-		addCar: jest.fn(),
-		resetInputs: jest.fn(),
-		removeCar: jest.fn(),
-	},
-}));
-
 /* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
 import axios from 'axios';
-import context from '../core/context';
 import BrandManager from './brandManager';
 import HelperService from './helper-service';
 import Remote from './remote';
 
 describe('Remote', () => {
+	const context = {
+		state: state,
+		actions: {
+			setCars: jest.fn(),
+			addCar: jest.fn(),
+			resetInputs: jest.fn(),
+			removeCar: jest.fn(),
+		},
+	};
+
 	test('fetch', async () => {
 		const data = Symbol('data');
 		const mockValue = { data };
 
 		jest.spyOn(axios, 'get').mockReturnValue(mockValue);
 
-		await Remote.fetch();
+		await Remote.fetch(context);
 
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/cars');
 		expect(context.actions.setCars).toHaveBeenCalledWith(data);
@@ -44,7 +43,7 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'post').mockReturnValue(mockValue);
 
-		await Remote.addCar();
+		await Remote.addCar(context);
 
 		expect(axios.post)
 			.toHaveBeenCalledWith('http://localhost:4000/cars', state);
@@ -58,7 +57,7 @@ describe('Remote', () => {
 
 		jest.spyOn(axios, 'delete').mockReturnValue(1);
 
-		await Remote.removeCar(id);
+		await Remote.removeCar(context, id);
 
 		expect(axios.delete)
 			.toHaveBeenCalledWith(`http://localhost:4000/cars/${ id }`);
@@ -73,7 +72,7 @@ describe('Remote', () => {
 		jest.spyOn(HelperService, 'index').mockReturnValue(data);
 		jest.spyOn(BrandManager, 'setBrands').mockReturnValue();
 
-		await Remote.getBrands();
+		await Remote.getBrands(context);
 
 		expect(axios.get).toHaveBeenCalledWith('http://localhost:4000/brand');
 		expect(HelperService.index).toHaveBeenCalledWith(data, 'make');
