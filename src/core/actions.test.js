@@ -107,10 +107,4 @@ describe('Actions', () => {
 
 		expect(result).toEqual(expectedResult);
 	});
-	test('setModels', () => {
-		const models = [Symbol('models')];
-		const result = actions.setModels({ data: models });
-
-		expect(result).toEqual({ models });
-	});
 });

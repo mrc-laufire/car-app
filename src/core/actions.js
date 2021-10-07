@@ -45,10 +45,6 @@ const updateModel = ({ data }) => ({
 	model: data,
 });
 
-const setModels = ({ data }) => ({
-	models: data,
-});
-
 const actions = {
 	setVehicleNumber,
 	setPurchaseDate,
@@ -61,7 +57,6 @@ const actions = {
 	updateMake,
 	updateModels,
 	updateModel,
-	setModels,
 };
 
 export default actions;
