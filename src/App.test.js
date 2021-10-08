@@ -2,32 +2,16 @@
 import { React } from 'react';
 import { render } from '@testing-library/react';
 import context from './core/context';
-import * as vehicleNumber from './components/vehicleNumber';
-import * as purchaseDate from './components/purchaseDate';
-import * as addButton from './components/addButton';
-import * as cars from './components/cars';
+import * as InputControl from './components/inputControls';
+import * as Display from './components/display';
 import App from './App';
-import * as genSelect from './components/genSelect';
 
 describe('App', () => {
 	test('renders the react app', () => {
 		const data = [
-			[vehicleNumber, 'vehicleNumber'],
-			[purchaseDate, 'purchaseDate'],
-			[addButton, 'addButton'],
-			[cars, 'cars'],
+			[InputControl, 'inputControl'],
+			[Display, 'display'],
 		];
-
-		let helper = '';
-
-		const mockSelect = jest.fn()
-			.mockImplementation(() => <div role={ helper }/>);
-
-		jest.spyOn(genSelect, 'default')
-			.mockImplementation((type) => {
-				helper = type;
-				return mockSelect;
-			});
 
 		data.forEach(([lib, value]) => jest.spyOn(lib, 'default')
 			.mockReturnValue(<div role={ value }/>));
@@ -36,10 +20,6 @@ describe('App', () => {
 
 		expect(getByRole('App')).toBeInTheDocument();
 		expect(getByRole('App')).toHaveClass('App');
-		['make', 'model'].forEach((value) => {
-			expect(getByRole(value)).toBeInTheDocument();
-			expect(mockSelect).toHaveBeenCalledWith(context);
-		});
 		data.forEach(([lib, value]) => {
 			expect(getByRole(value)).toBeInTheDocument();
 			expect(lib.default).toHaveBeenCalledWith(context);

@@ -1,25 +1,20 @@
 import { React, useEffect } from 'react';
 import './App.scss';
-import AddButton from './components/addButton';
-import Cars from './components/cars';
-import PurchaseDate from './components/purchaseDate';
-import VehicleNumber from './components/vehicleNumber';
 import Remote from './services/remote';
 import context from './core/context';
-import getSelect from './components/genSelect';
+import InputControl from './components/inputControls';
+import display from './components/display';
 
 const App = () => {
-	useEffect(() => Remote.getBrands(context), []);
-	useEffect(() => Remote.fetch(context), []);
+	useEffect(() => {
+		Remote.getBrands(context);
+		Remote.fetch(context);
+	}, []);
 
 	return (
 		<div className="App" role="App">
-			<span> Make { getSelect('make')(context) }</span>
-			<span> Model { getSelect('model')(context) }</span>
-			<span> Vehicle Number { VehicleNumber(context) }</span>
-			<span> Purchase Date { PurchaseDate(context) }</span>
-			<span> { AddButton(context) } </span>
-			<span>{ Cars(context) }</span>
+			{InputControl(context)}
+			{display(context)}
 		</div>
 	);
 };
